@@ -18,6 +18,6 @@ A solução é composta por:
 ```
 
 
-```
+
 <img width="929" height="441" alt="image" src="https://github.com/user-attachments/assets/7536a8dd-0496-47db-abd8-24deab3abaa7" />
-````
+
