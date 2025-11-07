@@ -21,3 +21,23 @@ A solução é composta por:
 
 <img width="929" height="441" alt="image" src="https://github.com/user-attachments/assets/7536a8dd-0496-47db-abd8-24deab3abaa7" />
 
+
+
+🔹 Fluxo resumido:
+```
+Upload de PDFs → /upload
+
+PDFs são convertidos em texto, divididos em chunks e salvos na FAISS.
+
+Extração de dados → /extract
+
+Usuário fornece:
+
+label → tipo de documento (ex: "carteira_oab")
+
+schema → estrutura esperada em JSON
+
+pdf_text → texto OCR extraído
+
+O agente decide quando consultar FAISS e retorna somente o JSON final.
+```
