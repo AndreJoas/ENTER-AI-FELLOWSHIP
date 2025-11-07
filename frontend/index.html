@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Help Desk AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h2>Assistente Help Desk AI</h2>
+
+    <textarea id="msg" placeholder="Digite sua dúvida..." rows="3" cols="50"></textarea><br>
+    <button onclick="sendMsg()">Enviar</button>
+
+    <p><b>Resposta:</b> <span id="resp"></span></p>
+
+    <!-- Elemento de áudio para tocar a resposta -->
+    <audio id="audioResp" controls style="display:none;"></audio>
+
+    <script>
+        async function sendMsg() {
+            const msg = document.getElementById("msg").value;
+            if (!msg.trim()) return;
+
+            document.getElementById("resp").innerText = "⏳ pensando...";
+
+            try {
+                let r = await fetch("/chat", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        msg: msg
+                    })
+                });
+
+                let data = await r.json();
+
+                // Mostrar resposta em texto
+                document.getElementById("resp").innerText = data.response;
+
+                // Tocar áudio da resposta
+                const audioEl = document.getElementById("audioResp");
+                audioEl.src = data.audio_url;
+                audioEl.style.display = "block"; // mostrar player
+                audioEl.play();
+
+            } catch (error) {
+                console.error("Erro ao enviar mensagem:", error);
+                document.getElementById("resp").innerText = "Erro ao enviar a mensagem.";
+            }
+        }
+
+        // Enviar com ENTER (Shift+Enter insere nova linha)
+        document.getElementById("msg").addEventListener("keydown", function(e) {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                sendMsg();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

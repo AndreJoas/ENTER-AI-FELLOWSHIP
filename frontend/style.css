@@ -1,0 +1,25 @@
+body {
+    font-family: sans-serif;
+    background: #f2f2f2;
+}
+
+.chat {
+    width: 400px;
+    margin: 60px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#chatBox {
+    height: 300px;
+    overflow: auto;
+}
+
+input {
+    width: 80%;
+}
+
+button {
+    width: 18%;
+}

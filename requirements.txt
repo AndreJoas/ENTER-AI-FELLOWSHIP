@@ -1,0 +1,16 @@
+langchain
+langchain-groq
+faiss-cpu
+sentence-transformers
+pandas
+flask
+python-dotenv
+langchain_community
+langchain-huggingface
+
+beautifulsoup4
+lxml
+gTTS
+pyttsx3
+kokoro 
+soundfile
